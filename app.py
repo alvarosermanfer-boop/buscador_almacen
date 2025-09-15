@@ -2,17 +2,13 @@ import streamlit as st
 import pandas as pd
 import fnmatch
 
-# Enlace directo al Excel en Google Sheets
-sheet_id = "1Hwp5cYXLJn8kptOEPNxS3I-Mp98wHNkV"
-excel_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=xlsx"
-
-# Cargar el Excel directamente desde el enlace
-df = pd.read_excel(excel_url, engine="openpyxl")
+# Cargar el archivo Excel directamente
+df = pd.read_excel("00 Super-buscador-Almacén MS 20250822.xlsx", engine="openpyxl")
 
 # Configuración de la página
 st.set_page_config(page_title="Buscador Almacén MS", layout="wide")
 st.title("🔍 Buscador Almacén MS")
-st.markdown("Escribe un texto con asteriscos (*)")
+st.markdown("Escribe un texto con comodines (*) para buscar en todas las columnas del Excel.")
 
 # Campo de búsqueda
 query = st.text_input("Buscar", placeholder="Ejemplo: sonda*temper*")
@@ -33,5 +29,6 @@ if query:
         st.warning("No se encontraron coincidencias.")
 else:
     st.info("Introduce un texto para buscar.")
+
 
 
